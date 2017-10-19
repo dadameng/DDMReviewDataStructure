@@ -173,18 +173,20 @@ AvlTree Insert(ElementType Element, AvlTree T)         //插入元素到AVL树�
         }  
     }else if(Element < T->Element ){  //向左找   
         T->Left = Insert(Element, T->Left);  
-        if(Height(T->Left ) - Height(T->Right ) == 2)  //破坏了Avl树的平衡   
+        if(Height(T->Left ) - Height(T->Right ) == 2){  //破坏了Avl树的平衡   
             if(Element < T->Left->Element )  
                 T = LeftLeftRotate(T); //左左单旋 
             else   
-                T = LeftRightRotate(T); //左右双旋  （先执行逆时针，再执行顺时针，一共旋转2次）   
+                T = LeftRightRotate(T);
+         } //左右双旋  （先执行逆时针，再执行顺时针，一共旋转2次）   
     }else if(Element > T->Element ){  
         T->Right = Insert(Element, T->Right);  
-        if(Height(T->Right ) - Height(T->Left ) == 2)  
+        if(Height(T->Right ) - Height(T->Left ) == 2){  
             if(Element > T->Right->Element )  
                 T = RightRightRotate(T); //右右单旋   
             else   
                 T = RightLeftRotate(T); //右左双旋       
+        }
     }  
         
     T->Height = Height(T);  //平衡后新树的高度   
@@ -255,7 +257,7 @@ Position LeftLeftRotate(Position K2)           //左左单旋(又叫右单旋 �
     return K1;  
 }   
     
-Position SingleRotateWithRight(Position K2)          //右右单旋(又叫左单旋 逆时针)
+Position RightRightRotate(Position K2)          //右右单旋(又叫左单旋 逆时针)
 {  
     Position K1;  
         
